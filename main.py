@@ -58,11 +58,4 @@ def get_comments(youtube, video_id: str, max_results=50):
 
     for item in response["items"]:
         snippet = item["snippet"]["topLevelComment"]["snippet"]
-        comments.append({
-            "작성자": snippet["authorDisplayName"],
-            "댓글": snippet["textDisplay"],
-            "좋아요": snippet["likeCount"],
-            "작성일": snippet["publishedAt"][:10]
-        })
-
-    return comments
+        comments.a
