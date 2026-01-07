@@ -15,14 +15,15 @@ st.set_page_config(
 
 st.title("📊 YouTube 댓글 & 영상 정보 요약")
 
-# 입력
-api_key = st.text_input("🔑 YouTube API Key", type="password")
+# 🔐 secrets에서 API 키 불러오기
+API_KEY = st.secrets["YOUTUBE_API_KEY"]
+
 video_input = st.text_input("🎬 YouTube 영상 URL 또는 ID")
 
-if st.button("분석 시작") and api_key and video_input:
+if st.button("분석 시작") and video_input:
 
     video_id = extract_video_id(video_input)
-    youtube = get_youtube_client(api_key)
+    youtube = get_youtube_client(API_KEY)
     info = get_video_info(youtube, video_id)
 
     if not info:
@@ -59,7 +60,7 @@ if st.button("분석 시작") and api_key and video_input:
     """)
 
     # -----------------------
-    # 댓글 테이블
+    # 댓글
     # -----------------------
     st.subheader("💬 댓글 미리보기 (상위 50개)")
     comments = get_comments(youtube, video_id)
@@ -68,4 +69,4 @@ if st.button("분석 시작") and api_key and video_input:
     st.dataframe(df, use_container_width=True)
 
 else:
-    st.info("API 키와 영상 URL 또는 ID를 입력하세요.")
+    st.info("YouTube 영상 URL 또는 ID를 입력하세요.")
