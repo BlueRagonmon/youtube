@@ -16,7 +16,7 @@ st.set_page_config(
 st.title("📊 YouTube 댓글 & 영상 정보 요약")
 
 # 🔐 secrets에서 API 키 불러오기
-API_KEY = st.secrets["AIzaSyAh0akL5vhbWb-X8RID41gFquJJCgF34Jo"]
+API_KEY = st.secrets["YT_API_KEY"]
 
 video_input = st.text_input("🎬 YouTube 영상 URL 또는 ID")
 
